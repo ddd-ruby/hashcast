@@ -1,4 +1,4 @@
-# HashCast [![Build Status](https://travis-ci.org/AlbertGazizov/hcast.png)](https://travis-ci.org/AlbertGazizov/hcast) [![Code Climate](https://codeclimate.com/github/AlbertGazizov/hcast.png)](https://codeclimate.com/github/AlbertGazizov/hcast) [![codecov](https://codecov.io/gh/ddd-ruby/hcast/branch/master/graph/badge.svg)](https://codecov.io/gh/ddd-ruby/hcast)
+# HashCast [![Build Status](https://travis-ci.org/ddd-ruby/hashcast.png)](https://travis-ci.org/ddd-ruby/hashcast) [![Code Climate](https://codeclimate.com/github/ddd-ruby/hashcast.png)](https://codeclimate.com/github/ddd-ruby/hashcast) [![codecov](https://codecov.io/gh/ddd-ruby/hashcast/branch/master/graph/badge.svg)](https://codecov.io/gh/ddd-ruby/hashcast)
 
 
 HashCast is a library for casting hash attributes
@@ -120,5 +120,6 @@ HashCast.config.input_keys  = :string
 HashCast.config.output_keys = :symbol
 ```
 
-## Author
+## Authors
 Albert Gazizov, [@deeper4k](https://twitter.com/deeper4k)
+Roman Heinrich, [@mindreframer](https://twitter.com/mindreframer)
