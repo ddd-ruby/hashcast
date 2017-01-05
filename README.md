@@ -125,5 +125,6 @@ HashCast.config.output_keys = :symbol
 ```
 
 ## Authors
-Albert Gazizov, [@deeper4k](https://twitter.com/deeper4k)
-Roman Heinrich, [@mindreframer](https://twitter.com/mindreframer)
+
+- Albert Gazizov, [@deeper4k](https://twitter.com/deeper4k)
+- Roman Heinrich, [@mindreframer](https://twitter.com/mindreframer)
