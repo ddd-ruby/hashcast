@@ -280,7 +280,7 @@ describe HashCast::Caster do
 
       expect do
         ContactCaster.cast(input_hash, skip_unexpected_attributes: true)
-      end.not_to raise_error(HashCast::Errors::UnexpectedAttributeError)
+      end.not_to raise_error
 
     end
 
