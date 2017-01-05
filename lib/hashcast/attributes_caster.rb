@@ -1,4 +1,4 @@
-class HCast::AttributesCaster
+class HashCast::AttributesCaster
   attr_reader :attributes, :options
 
   def initialize(attributes, options)
@@ -15,12 +15,12 @@ class HCast::AttributesCaster
         begin
           casted_value = cast_attribute(attribute, input_hash)
           casted_hash[cast_key(attribute.name, options)] = casted_value
-        rescue HCast::Errors::AttributeError => e
+        rescue HashCast::Errors::AttributeError => e
           e.add_namespace(attribute.name)
           raise e
         end
       else
-        raise HCast::Errors::MissingAttributeError.new("should be given", attribute.name) if attribute.required?
+        raise HashCast::Errors::MissingAttributeError.new("should be given", attribute.name) if attribute.required?
       end
     end
 
@@ -55,7 +55,7 @@ class HCast::AttributesCaster
   end
 
   def cast_children_with_caster(value, attribute, caster)
-    return caster.cast(value) if attribute.caster != HCast::Casters::ArrayCaster
+    return caster.cast(value) if attribute.caster != HashCast::Casters::ArrayCaster
 
     value.map do |val|
       caster.cast(val)
@@ -81,7 +81,7 @@ class HCast::AttributesCaster
   def check_unexpected_attributes_not_given!(input_hash_keys, casted_hash_keys)
     unexpected_keys = keys_diff(input_hash_keys, casted_hash_keys)
     unless unexpected_keys.empty?
-      raise HCast::Errors::UnexpectedAttributeError.new("is not valid attribute name", unexpected_keys.first)
+      raise HashCast::Errors::UnexpectedAttributeError.new("is not valid attribute name", unexpected_keys.first)
     end
   end
 

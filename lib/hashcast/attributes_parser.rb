@@ -1,11 +1,11 @@
 # Parses caster rules
-# and returns list of HCast::Metadata::Attribute instances
+# and returns list of HashCast::Metadata::Attribute instances
 # which contains casting rules
-class HCast::AttributesParser
+class HashCast::AttributesParser
 
   # Performs casting
   # @param block [Proc] block with casting rules
-  # @return Array(HCast::Metadata::Attribute) list of casting rules
+  # @return Array(HashCast::Metadata::Attribute) list of casting rules
   def self.parse(&block)
     dsl = DSL.new
     dsl.instance_exec(&block)
@@ -27,15 +27,15 @@ class HCast::AttributesParser
     def method_missing(caster_name, *args, &block)
       attr_name = args[0]
       options   = args[1] || {}
-      caster = HCast.casters[caster_name]
+      caster = HashCast.casters[caster_name]
 
       check_caster_exists!(caster, caster_name)
       check_attr_name_valid!(attr_name)
       check_options_is_hash!(options)
 
-      attribute = HCast::Metadata::Attribute.new(attr_name, caster, options)
+      attribute = HashCast::Metadata::Attribute.new(attr_name, caster, options)
       if block_given?
-        attribute.children = HCast::AttributesParser.parse(&block)
+        attribute.children = HashCast::AttributesParser.parse(&block)
       end
       attributes << attribute
     end
@@ -44,19 +44,19 @@ class HCast::AttributesParser
 
     def check_caster_exists!(caster, caster_name)
       if !caster
-        raise HCast::Errors::CasterNotFoundError, "caster with name '#{caster_name}' is not found"
+        raise HashCast::Errors::CasterNotFoundError, "caster with name '#{caster_name}' is not found"
       end
     end
 
     def check_attr_name_valid!(attr_name)
       if !attr_name.is_a?(Symbol) && !attr_name.is_a?(String)
-        raise HCast::Errors::ArgumentError, "attribute name should be a symbol or string"
+        raise HashCast::Errors::ArgumentError, "attribute name should be a symbol or string"
       end
     end
 
     def check_options_is_hash!(options)
       if !options.is_a?(Hash)
-        raise HCast::Errors::ArgumentError, "attribute options should be a Hash"
+        raise HashCast::Errors::ArgumentError, "attribute options should be a Hash"
       end
     end
   end

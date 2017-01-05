@@ -1,15 +1,15 @@
-module HCast::Errors
+module HashCast::Errors
 
-  # Base error class for all HCast errors
-  class HCastError            < StandardError; end
+  # Base error class for all HashCast errors
+  class HashCastError            < StandardError; end
 
-  # Raised when caster with given name is not registered in HCast
-  class CasterNotFoundError   < HCastError;    end
+  # Raised when caster with given name is not registered in HashCast
+  class CasterNotFoundError   < HashCastError;    end
 
-  # Raised when some of the given to HCast argument is not valid
-  class ArgumentError         < HCastError;    end
+  # Raised when some of the given to HashCast argument is not valid
+  class ArgumentError         < HashCastError;    end
 
-  class AttributeError < HCastError
+  class AttributeError < HashCastError
     attr_reader :namespaces
 
     def initialize(message, namespace = nil)

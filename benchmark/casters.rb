@@ -1,5 +1,5 @@
 class ContactCaster
-  include HCast::Caster
+  include HashCast::Caster
   attributes do
     hash :contact do
       string   :name
@@ -24,7 +24,7 @@ end
 #########
 
 class SettingsCaster
-  include HCast::Caster
+  include HashCast::Caster
 
   attributes do
     string :account
@@ -32,7 +32,7 @@ class SettingsCaster
 end
 
 class EmailCaster
-  include HCast::Caster
+  include HashCast::Caster
 
   attributes do
     string :address
@@ -40,7 +40,7 @@ class EmailCaster
 end
 
 class CompanyCaster
-  include HCast::Caster
+  include HashCast::Caster
 
   attributes do
     string :name

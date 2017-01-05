@@ -1,4 +1,4 @@
-class HCast::Config
+class HashCast::Config
   attr_accessor :input_keys, :output_keys
 
   def input_keys

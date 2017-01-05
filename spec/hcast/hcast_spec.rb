@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HCast do
+describe HashCast do
 
   describe ".create" do
     it "should cast hash attributes" do
@@ -15,7 +15,7 @@ describe HCast do
         }
       }
 
-      caster = HCast.create do
+      caster = HashCast.create do
         hash :contact do
           string   :name
           integer  :age

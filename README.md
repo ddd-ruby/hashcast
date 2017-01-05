@@ -1,7 +1,7 @@
-# HCast [![Build Status](https://travis-ci.org/AlbertGazizov/hcast.png)](https://travis-ci.org/AlbertGazizov/hcast) [![Code Climate](https://codeclimate.com/github/AlbertGazizov/hcast.png)](https://codeclimate.com/github/AlbertGazizov/hcast) [![codecov](https://codecov.io/gh/ddd-ruby/hcast/branch/master/graph/badge.svg)](https://codecov.io/gh/ddd-ruby/hcast)
+# HashCast [![Build Status](https://travis-ci.org/AlbertGazizov/hcast.png)](https://travis-ci.org/AlbertGazizov/hcast) [![Code Climate](https://codeclimate.com/github/AlbertGazizov/hcast.png)](https://codeclimate.com/github/AlbertGazizov/hcast) [![codecov](https://codecov.io/gh/ddd-ruby/hcast/branch/master/graph/badge.svg)](https://codecov.io/gh/ddd-ruby/hcast)
 
 
-HCast is a library for casting hash attributes
+HashCast is a library for casting hash attributes
 
 ### Usage
 
@@ -9,7 +9,7 @@ Create caster class and declare hash attributes inside:
 
 ```ruby
 class ContactCaster
-  include HCast::Caster
+  include HashCast::Caster
 
   attributes do
     hash :contact do
@@ -91,14 +91,14 @@ The caster will cast your hash attributes to:
 }
 ```
 
-if some of the attributes can't be casted the HCast::Errors::CastingError is raised
+if some of the attributes can't be casted the HashCast::Errors::CastingError is raised
 
 
 Also you can provide options to every caster about expected keys type for input/output (:symbol / :string)
 
 ```ruby
 class SettingsCaster
-  include HCast::Caster
+  include HashCast::Caster
 
   attributes do
     string :account
@@ -114,10 +114,10 @@ SettingsCaster.cast({account: "some"}, input_keys: :symbol, output_keys: :string
 
 ```ruby
 # expect all input keys to be strings
-HCast.config.input_keys  = :string
+HashCast.config.input_keys  = :string
 
 # expect all output keys to be symbols
-HCast.config.output_keys = :symbol
+HashCast.config.output_keys = :symbol
 ```
 
 ## Author

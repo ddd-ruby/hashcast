@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe HCast::Caster do
+describe HashCast::Caster do
   describe "#cast" do
 
     class ContactCaster
-      include HCast::Caster
+      include HashCast::Caster
 
       attributes do
         hash :contact do
@@ -82,7 +82,7 @@ describe HCast::Caster do
 
     describe "Custom casters" do
       class SettingsCaster
-        include HCast::Caster
+        include HashCast::Caster
 
         attributes do
           string :account
@@ -90,7 +90,7 @@ describe HCast::Caster do
       end
 
       class EmailCaster
-        include HCast::Caster
+        include HashCast::Caster
 
         attributes do
           string :address
@@ -98,7 +98,7 @@ describe HCast::Caster do
       end
 
       class CompanyCaster
-        include HCast::Caster
+        include HashCast::Caster
 
         attributes do
           string :name
@@ -158,7 +158,7 @@ describe HCast::Caster do
 
       expect do
         ContactCaster.cast(input_hash)
-      end.to raise_error(HCast::Errors::CastingError, "contact[name] should be a string, but was Hash")
+      end.to raise_error(HashCast::Errors::CastingError, "contact[name] should be a string, but was Hash")
     end
 
     it "should raise error if some attribute wasn't given" do
@@ -188,7 +188,7 @@ describe HCast::Caster do
 
       expect do
         ContactCaster.cast(input_hash)
-      end.to raise_error(HCast::Errors::MissingAttributeError, "contact[name] should be given")
+      end.to raise_error(HashCast::Errors::MissingAttributeError, "contact[name] should be given")
     end
 
     it "should not raise error if attribute is optional" do
@@ -249,7 +249,7 @@ describe HCast::Caster do
 
       expect do
         ContactCaster.cast(input_hash)
-      end.to raise_error(HCast::Errors::UnexpectedAttributeError, "contact[wrong_attribute] is not valid attribute name")
+      end.to raise_error(HashCast::Errors::UnexpectedAttributeError, "contact[wrong_attribute] is not valid attribute name")
     end
 
     it "shouldn't unexpected attributes error if skip_unexpected_attributes flag is set to true" do
@@ -280,7 +280,7 @@ describe HCast::Caster do
 
       expect do
         ContactCaster.cast(input_hash, skip_unexpected_attributes: true)
-      end.not_to raise_error(HCast::Errors::UnexpectedAttributeError)
+      end.not_to raise_error(HashCast::Errors::UnexpectedAttributeError)
 
     end
 
@@ -343,20 +343,20 @@ describe HCast::Caster do
     it "should raise CaterNotFound exception if caster name is invalid" do
       expect do
         class WrongCaster
-          include HCast::Caster
+          include HashCast::Caster
 
           attributes do
             integr   :name
           end
         end
-      end.to raise_error(HCast::Errors::CasterNotFoundError)
+      end.to raise_error(HashCast::Errors::CasterNotFoundError)
     end
   end
 
   context "allow nil values" do
     before(:all) do
       class HomeCaster
-        include HCast::Caster
+        include HashCast::Caster
 
         attributes do
           string   :city
@@ -378,7 +378,7 @@ describe HCast::Caster do
           city: nil,
           zip: nil
         )
-      end.to raise_error(HCast::Errors::CastingError, "city should be a string, but was NilClass")
+      end.to raise_error(HashCast::Errors::CastingError, "city should be a string, but was NilClass")
     end
   end
 
@@ -412,59 +412,59 @@ describe HCast::Caster do
   context "possible exeptions" do
     it "raises when attributes were not defined" do
       class NoAttrCaster
-        include HCast::Caster
+        include HashCast::Caster
       end
 
       expect{
         NoAttrCaster.cast({a: 1})
-      }.to raise_error(HCast::Errors::ArgumentError, "Attributes block should be defined")
+      }.to raise_error(HashCast::Errors::ArgumentError, "Attributes block should be defined")
     end
 
     context "check_options!" do
       it "raises when options are not a hash" do
         expect {
           SettingsCaster.cast({account: "some"}, 1)
-        }.to raise_error(HCast::Errors::ArgumentError, "Options should be a hash")
+        }.to raise_error(HashCast::Errors::ArgumentError, "Options should be a hash")
       end
 
       it "raises on bad options" do
         expect {
           SettingsCaster.cast({account: "some"}, {input_keys: "string"})
-        }.to raise_error(HCast::Errors::ArgumentError, "input_keys should be :string or :symbol")
+        }.to raise_error(HashCast::Errors::ArgumentError, "input_keys should be :string or :symbol")
 
         expect {
           SettingsCaster.cast({account: "some"}, {output_keys: "string"})
-        }.to raise_error(HCast::Errors::ArgumentError, "output_keys should be :string or :symbol")
+        }.to raise_error(HashCast::Errors::ArgumentError, "output_keys should be :string or :symbol")
       end
     end
 
     it "raises when input is not hash" do
       expect {
           SettingsCaster.cast(["some"])
-        }.to raise_error(HCast::Errors::ArgumentError, "Hash should be given")
+        }.to raise_error(HashCast::Errors::ArgumentError, "Hash should be given")
     end
 
     context "AttributesParser" do
       it "raises when attribute name is not string/symbol" do
         expect{
           class BadAttrNameCaster
-            include HCast::Caster
+            include HashCast::Caster
             attributes do
               string 4545
             end
           end
-        }.to raise_error(HCast::Errors::ArgumentError, "attribute name should be a symbol or string")
+        }.to raise_error(HashCast::Errors::ArgumentError, "attribute name should be a symbol or string")
       end
 
       it "raises when attribute options are not hash" do
         expect{
-          class AttrOptionsNotHashCaster
-            include HCast::Caster
+          class AttrOptionsNotHashCast
+            include HashCast::Caster
             attributes do
               string :some, [1,2,3]
             end
           end
-        }.to raise_error(HCast::Errors::ArgumentError, "attribute options should be a Hash")
+        }.to raise_error(HashCast::Errors::ArgumentError, "attribute options should be a Hash")
       end
     end
   end
