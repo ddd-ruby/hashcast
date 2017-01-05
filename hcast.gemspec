@@ -6,11 +6,11 @@ require 'hashcast/version'
 Gem::Specification.new do |spec|
   spec.name          = "hashcast"
   spec.version       = HashCast::VERSION
-  spec.authors       = ["Albert Gazizov"]
+  spec.authors       = ["Albert Gazizov", "Roman Heinrich"]
   spec.email         = ["deeper4k@gmail.com"]
   spec.description   = %q{Declarative Hash Caster}
   spec.summary       = %q{Declarative Hash Caster}
-  spec.homepage      = "http://github.com/AlbertGazizov/hcast"
+  spec.homepage      = "http://github.com/ddd-ruby/hashcast"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
