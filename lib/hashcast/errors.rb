@@ -1,13 +1,16 @@
 module HashCast::Errors
 
   # Base error class for all HashCast errors
-  class HashCastError            < StandardError; end
+  class HashCastError < StandardError
+  end
 
   # Raised when caster with given name is not registered in HashCast
-  class CasterNotFoundError   < HashCastError;    end
+  class CasterNotFoundError < HashCastError
+  end
 
   # Raised when some of the given to HashCast argument is not valid
-  class ArgumentError         < HashCastError;    end
+  class ArgumentError < HashCastError
+  end
 
   class AttributeError < HashCastError
     attr_reader :namespaces
@@ -39,11 +42,14 @@ module HashCast::Errors
 
   end
   # Raised when hash attribute can't be casted
-  class CastingError < AttributeError;    end
+  class CastingError < AttributeError
+  end
 
   # Raised when required hash attribute wasn't given for casting
-  class MissingAttributeError < AttributeError;    end
+  class MissingAttributeError < AttributeError
+  end
 
   # Raised when unexpected hash attribute was given for casting
-  class UnexpectedAttributeError < AttributeError; end
+  class UnexpectedAttributeError < AttributeError
+  end
 end
