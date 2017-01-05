@@ -120,5 +120,6 @@ HashCast.config.input_keys  = :string
 HashCast.config.output_keys = :symbol
 ```
 
-## Author
+## Authors
 Albert Gazizov, [@deeper4k](https://twitter.com/deeper4k)
+Roman Heinrich, [@mindreframer](https://twitter.com/mindreframer)
