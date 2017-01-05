@@ -54,7 +54,7 @@ describe HashCast::Caster do
 
       casted_hash = ContactCaster.cast(input_hash)
 
-      casted_hash.should == {
+      expect(casted_hash).to eq({
         contact: {
           name: "John Smith",
           age: 22,
@@ -77,7 +77,7 @@ describe HashCast::Caster do
             },
           ]
         }
-      }
+      })
     end
 
     describe "Custom casters" do
@@ -119,14 +119,14 @@ describe HashCast::Caster do
           ]
         )
 
-        casted_hash.should == {
+        expect(casted_hash).to eq({
           name: "Might & Magic",
           settings: { account: "migthy_lord" },
           emails: [
             { address: "test1@example.com" },
             { address: "test2@example.com" }
           ]
-        }
+        })
       end
     end
 
@@ -312,7 +312,7 @@ describe HashCast::Caster do
 
       casted_hash = ContactCaster.cast(input_hash, input_keys: :string, output_keys: :symbol)
 
-      casted_hash.should == {
+      expect(casted_hash).to eq({
         contact: {
           name: "John Smith",
           age: 22,
@@ -335,7 +335,7 @@ describe HashCast::Caster do
             },
           ]
         }
-      }
+      })
     end
   end
 
