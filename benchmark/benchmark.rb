@@ -2,7 +2,7 @@
 require 'bundler'
 Bundler.setup
 require 'benchmark'
-require 'hcast'
+require 'hashcast'
 require 'bixby/bench'
 
 require_relative "casters"
@@ -50,7 +50,9 @@ class CastingBenchmark
 
   def self.run
     instance = CastingBenchmark.new
-    Bixby::Bench.run(10_000) do |b|
+    times = 10_000
+    Bixby::Bench.run(times) do |b|
+      puts "calling #{times} times..."
       b.sample('Contact Caster') do
         ContactCaster.cast(instance.input_contact)
       end
