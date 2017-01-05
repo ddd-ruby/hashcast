@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hashcast (0.3.0)
+    hashcast (0.4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -37,11 +37,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  allocation_stats
-  bixby-bench
+  allocation_stats (= 0.1.5)
+  bixby-bench (= 0.1.0)
   bundler (~> 1.3)
-  byebug
-  codecov
+  byebug (= 9.0.6)
+  codecov (= 0.1.9)
   hashcast!
   rake
   rspec
