@@ -1,7 +1,7 @@
-class HCast::Casters::ArrayCaster
+class HashCast::Casters::ArrayCaster
 
   def self.cast(value, attr_name, options = {})
-    raise HCast::Errors::CastingError, "should be an array" unless value.is_a?(Array)
+    raise HashCast::Errors::CastingError, "should be an array" unless value.is_a?(Array)
     return value unless options[:each]
 
     cast_array_items(value, attr_name, options)
@@ -11,7 +11,7 @@ class HCast::Casters::ArrayCaster
 
   def self.cast_array_items(array, attr_name, options)
     caster_name = options[:each]
-    caster      = HCast.casters[caster_name]
+    caster      = HashCast.casters[caster_name]
     check_caster_exists!(caster, caster_name)
     array.map do |item|
       caster.cast(item, "#{attr_name} item", options)
@@ -20,7 +20,7 @@ class HCast::Casters::ArrayCaster
 
   def self.check_caster_exists!(caster, caster_name)
     unless caster
-      raise HCast::Errors::CasterNotFoundError, "caster with name #{caster_name} is not found"
+      raise HashCast::Errors::CasterNotFoundError, "caster with name #{caster_name} is not found"
     end
   end
 

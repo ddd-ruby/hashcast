@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe "Casters" do
-  context HCast::Casters::ArrayCaster do
+  context HashCast::Casters::ArrayCaster do
     def cast(v)
-      HCast::Casters::ArrayCaster.cast(v, :attr_name)
+      HashCast::Casters::ArrayCaster.cast(v, :attr_name)
     end
 
     it "works with real values" do
@@ -12,26 +12,26 @@ describe "Casters" do
 
     it "works with given caster" do
       expect(
-        HCast::Casters::ArrayCaster.cast(["true"], :attr_name, {each: :boolean})
+        HashCast::Casters::ArrayCaster.cast(["true"], :attr_name, {each: :boolean})
       ).to eq([true])
     end
 
     it "raises else with wrong values" do
       expect{
         cast("something")
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
 
     it "raises when given caster does not exist" do
       expect{
-        HCast::Casters::ArrayCaster.cast(["true"], :attr_name, {each: :booleans})
-      }.to raise_error(HCast::Errors::CasterNotFoundError, "caster with name booleans is not found")
+        HashCast::Casters::ArrayCaster.cast(["true"], :attr_name, {each: :booleans})
+      }.to raise_error(HashCast::Errors::CasterNotFoundError, "caster with name booleans is not found")
     end
   end
 
-  context HCast::Casters::BooleanCaster do
+  context HashCast::Casters::BooleanCaster do
     def cast(v)
-      HCast::Casters::BooleanCaster.cast(v, :attr_name)
+      HashCast::Casters::BooleanCaster.cast(v, :attr_name)
     end
     it "works with real booleans" do
       expect(cast(true)).to eq(true)
@@ -55,13 +55,13 @@ describe "Casters" do
     it "raises else with wrong values" do
       expect{
         cast("something")
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
   end
 
-  context HCast::Casters::DateCaster do
+  context HashCast::Casters::DateCaster do
     def cast(v)
-      HCast::Casters::DateCaster.cast(v, :attr_name)
+      HashCast::Casters::DateCaster.cast(v, :attr_name)
     end
     it "works with real dates" do
       value = Date.new
@@ -76,19 +76,19 @@ describe "Casters" do
     it "raises else with wrong string value" do
       expect{
         cast("something")
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
 
     it "raises else" do
       expect{
         cast(1)
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
   end
 
-  context HCast::Casters::DateTimeCaster do
+  context HashCast::Casters::DateTimeCaster do
     def cast(v)
-      HCast::Casters::DateTimeCaster.cast(v, :attr_name)
+      HashCast::Casters::DateTimeCaster.cast(v, :attr_name)
     end
 
     it "works with real datetimes" do
@@ -104,19 +104,19 @@ describe "Casters" do
     it "raises else with wrong string value" do
       expect{
         cast("something")
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
 
     it "raises else" do
       expect{
         cast(1)
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
   end
 
-  context HCast::Casters::FloatCaster do
+  context HashCast::Casters::FloatCaster do
     def cast(v)
-      HCast::Casters::FloatCaster.cast(v, :attr_name)
+      HashCast::Casters::FloatCaster.cast(v, :attr_name)
     end
 
     it "works with real values" do
@@ -132,19 +132,19 @@ describe "Casters" do
     it "raises else with wrong string value" do
       expect{
         cast("something")
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
 
     it "raises else" do
       expect{
         cast(1)
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
   end
 
-  context HCast::Casters::HashCaster do
+  context HashCast::Casters::HashCast do
     def cast(v)
-      HCast::Casters::HashCaster.cast(v, :attr_name)
+      HashCast::Casters::HashCast.cast(v, :attr_name)
     end
 
     it "works with real values" do
@@ -155,13 +155,13 @@ describe "Casters" do
     it "raises else" do
       expect{
         cast(1)
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
   end
 
-  context HCast::Casters::IntegerCaster do
+  context HashCast::Casters::IntegerCaster do
     def cast(v)
-      HCast::Casters::IntegerCaster.cast(v, :attr_name)
+      HashCast::Casters::IntegerCaster.cast(v, :attr_name)
     end
 
     it "works with real value" do
@@ -176,20 +176,20 @@ describe "Casters" do
     it "raises with invalid string values" do
       expect{
         cast("some")
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
 
     it "raises else" do
       expect{
         cast(1.3)
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
   end
 
 
-  context HCast::Casters::TimeCaster do
+  context HashCast::Casters::TimeCaster do
     def cast(v)
-      HCast::Casters::TimeCaster.cast(v, :attr_name)
+      HashCast::Casters::TimeCaster.cast(v, :attr_name)
     end
 
     it "works with real value" do
@@ -204,20 +204,20 @@ describe "Casters" do
     it "raises with invalid string values" do
       expect{
         cast("some")
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
 
     it "raises else" do
       expect{
         cast(1.3)
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
   end
 
 
-  context HCast::Casters::SymbolCaster do
+  context HashCast::Casters::SymbolCaster do
     def cast(v)
-      HCast::Casters::SymbolCaster.cast(v, :attr_name)
+      HashCast::Casters::SymbolCaster.cast(v, :attr_name)
     end
 
     it "works with real value" do
@@ -231,14 +231,14 @@ describe "Casters" do
 
     it "raises with long strings" do
       expect{
-        cast("a" * (HCast::Casters::SymbolCaster::MAX_SYMBOL_LENGTH + 1))
-      }.to raise_error(HCast::Errors::CastingError)
+        cast("a" * (HashCast::Casters::SymbolCaster::MAX_SYMBOL_LENGTH + 1))
+      }.to raise_error(HashCast::Errors::CastingError)
     end
 
     it "raises else" do
       expect{
         cast(1.3)
-      }.to raise_error(HCast::Errors::CastingError)
+      }.to raise_error(HashCast::Errors::CastingError)
     end
   end
 

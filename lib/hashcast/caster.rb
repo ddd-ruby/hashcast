@@ -2,7 +2,7 @@
 #
 # Example caster:
 #   class ContactCaster
-#     include HCast::Caster
+#     include HashCast::Caster
 #
 #     attributes do
 #       hash :contact do
@@ -76,8 +76,8 @@
 #       ]
 #     }
 #   }
-module HCast::Caster
-  extend HCast::Concern
+module HashCast::Caster
+  extend HashCast::Concern
 
   module ClassMethods
     ALLOWED_OPTIONS = [:string, :symbol]
@@ -92,7 +92,7 @@ module HCast::Caster
     def attributes(&block)
       raise ArgumentError, "You should provide block" unless block_given?
 
-      attributes = HCast::AttributesParser.parse(&block)
+      attributes = HashCast::AttributesParser.parse(&block)
       self.instance_variable_set(:@attributes, attributes)
     end
 
@@ -105,7 +105,7 @@ module HCast::Caster
       check_options!(options)
       options = set_default_options(options)
 
-      attributes_caster = HCast::AttributesCaster.new(instance_variable_get(:@attributes), options)
+      attributes_caster = HashCast::AttributesCaster.new(instance_variable_get(:@attributes), options)
       attributes_caster.cast(hash)
     end
 
@@ -113,31 +113,31 @@ module HCast::Caster
 
     def check_attributes_defined!
       unless instance_variable_defined?(:@attributes)
-        raise HCast::Errors::ArgumentError, "Attributes block should be defined"
+        raise HashCast::Errors::ArgumentError, "Attributes block should be defined"
       end
     end
 
     def check_options!(options)
       unless options.is_a?(Hash)
-        raise HCast::Errors::ArgumentError, "Options should be a hash"
+        raise HashCast::Errors::ArgumentError, "Options should be a hash"
       end
       if options[:input_keys] && !ALLOWED_OPTIONS.include?(options[:input_keys])
-        raise HCast::Errors::ArgumentError, "input_keys should be :string or :symbol"
+        raise HashCast::Errors::ArgumentError, "input_keys should be :string or :symbol"
       end
       if options[:output_keys] && !ALLOWED_OPTIONS.include?(options[:output_keys])
-        raise HCast::Errors::ArgumentError, "output_keys should be :string or :symbol"
+        raise HashCast::Errors::ArgumentError, "output_keys should be :string or :symbol"
       end
     end
 
     def check_hash_given!(hash)
       unless hash.is_a?(Hash)
-        raise HCast::Errors::ArgumentError, "Hash should be given"
+        raise HashCast::Errors::ArgumentError, "Hash should be given"
       end
     end
 
     def set_default_options(options)
-      options[:input_keys]  ||= HCast.config.input_keys
-      options[:output_keys] ||= HCast.config.output_keys
+      options[:input_keys]  ||= HashCast.config.input_keys
+      options[:output_keys] ||= HashCast.config.output_keys
       options
     end
   end

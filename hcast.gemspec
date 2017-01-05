@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'hcast/version'
+require 'hashcast/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "hcast"
-  spec.version       = HCast::VERSION
-  spec.authors       = ["Albert Gazizov"]
+  spec.name          = "hashcast"
+  spec.version       = HashCast::VERSION
+  spec.authors       = ["Albert Gazizov", "Roman Heinrich"]
   spec.email         = ["deeper4k@gmail.com"]
   spec.description   = %q{Declarative Hash Caster}
   spec.summary       = %q{Declarative Hash Caster}
-  spec.homepage      = "http://github.com/AlbertGazizov/hcast"
+  spec.homepage      = "http://github.com/ddd-ruby/hashcast"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

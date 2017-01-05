@@ -1,4 +1,4 @@
-module HCast::Metadata
+module HashCast::Metadata
   class Attribute
     attr_reader :name, :caster, :options
     attr_accessor :children

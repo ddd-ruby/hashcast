@@ -15,7 +15,7 @@ if ENV['CI']=='true'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
 
-require 'hcast'
+require 'hashcast'
 RSpec.configure do |config|
   config.color_enabled = true
 end
