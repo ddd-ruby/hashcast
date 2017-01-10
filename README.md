@@ -7,6 +7,15 @@
 
 HashCast is a library for casting hash attributes
 
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'hashcast'
+```
+
 ### Usage
 
 Create caster class and declare hash attributes inside:
