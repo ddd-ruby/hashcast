@@ -1,5 +1,6 @@
 # HashCast
 [![Build Status](https://travis-ci.org/ddd-ruby/hashcast.png)](https://travis-ci.org/ddd-ruby/hashcast)
+[![Gem Version](https://badge.fury.io/rb/hashcast.png)](http://badge.fury.io/rb/hashcast)
 [![Code Climate](https://codeclimate.com/github/ddd-ruby/hashcast/badges/gpa.svg)](https://codeclimate.com/github/ddd-ruby/hashcast)
 [![codecov](https://codecov.io/gh/ddd-ruby/hashcast/branch/master/graph/badge.svg)](https://codecov.io/gh/ddd-ruby/hashcast)
 [![Dependency Status](https://gemnasium.com/ddd-ruby/hashcast.png)](https://gemnasium.com/ddd-ruby/hashcast)
